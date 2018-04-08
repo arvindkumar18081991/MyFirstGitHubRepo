@@ -1,0 +1,47 @@
+﻿.formRow {
+    width: 100%;
+}
+
+.formColumn {
+    width: 45%;
+    float: left;
+    padding: 5px;
+}
+
+.formColumnSeparator {
+    width: 10%;
+    height: 5px;
+    float: left;
+    padding: 0 5px;
+}
+
+.formElementLabel {
+    width: 30%;
+    float: left;
+    padding: 0 5px;
+}
+
+.formElementControl {
+    width: 70%;
+    float: left;
+    padding: 0 5px;
+}
+
+.panel-separator {
+    padding-bottom: 15px;
+}
+
+.boldHeading {
+    font-weight: bold;
+}
+
+.buttonPanel {
+    width: 100%;
+    float: left;
+    padding-top: 15px;
+}
+
+.actionButton {
+    float: right;
+    padding-left: 15px;
+}

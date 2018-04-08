@@ -1,7 +1,202 @@
-<h1>Counter</h1>
+<div id="mainContainer" class="panel-group">
 
-<p>This is a simple example of an Angular component.</p>
+    <div class="page-header">
+        <h2>DSGW Service Configuration</h2>
+    </div>
 
-<p>Current count: <strong>{{ currentCount }}</strong></p>
+    <form #configForm = "ngForm" (ngSubmit)="saveConfigData()">
+        <div class="panel panel-default panel-separator">
+            <div class="panel-heading boldHeading">App Settings</div>
+            <div class="panel-body">
 
-<button (click)="incrementCounter()">Increment</button>
+                <div class="formRow">
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            AppDir
+                        </label>
+                        <div class="formElementControl"> <input type="text"  name="dSGWXMLFile.appDir" [(ngModel)]="dSGWXMLFile.appDir" class="form-control" /></div>
+                    </div>
+                    <div class="formColumnSeparator"></div>
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            psftpParams
+                        </label>
+                        <div class="formElementControl">
+                            <input type="text" name="dSGWXMLFile.psftpParams" [(ngModel)]="dSGWXMLFile.psftpParams" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="formRow">
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            ThreadPriority
+                        </label>
+                        <div class="formElementControl">
+                            <select class="form-control" required name="threadPriorityOption" [(ngModel)]='threadPriorityOption' (ngModelChange)='onThreadOptionsSelected($event)'>
+                                <option class='option' *ngFor='let option of threadPriorityOptions' [value]="option">{{option}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formColumnSeparator"></div>
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            ProcessPriority
+                        </label>
+                        <div class="formElementControl">
+                            <select class="form-control" required name="processPriorityOption" [(ngModel)]='processPriorityOption' (ngModelChange)='onProcessOptionsSelected($event)'>
+                                <option class='option' *ngFor='let option of processPriorityOptions' [value]="option">{{option}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formRow">
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            SecureMode
+                        </label>
+                        <div class="formElementControl">
+                            <input class="checkbox" type="checkbox" name="secureModeCheckBox" [(ngModel)]="secureModeCheckBox" (ngModelChange)="secureModeChange($event)"  required >
+                        </div>
+                    </div>
+                    <div class="formColumnSeparator"></div>
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            sshParams
+                        </label>
+                        <div class="formElementControl">
+                            <input type="text" name="dSGWXMLFile.sshParams" [(ngModel)]="dSGWXMLFile.sshParams" class="form-control"  />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="formRow">
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            sshPath
+                        </label>
+                        <div class="formElementControl"> <input type="text" name="dSGWXMLFile.sshPath" [(ngModel)]="dSGWXMLFile.sshPath" class="form-control" /></div>
+                    </div>
+                    <div class="formColumnSeparator"></div>
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            sftpParams
+                        </label>
+                        <div class="formElementControl">
+                            <input type="text" name="dSGWXMLFile.sftpParams" [(ngModel)]="dSGWXMLFile.sftpParams" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formRow">
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            puttyPath
+                        </label>
+                        <div class="formElementControl"> <input type="text" name="dSGWXMLFile.puttyPath" [(ngModel)]="dSGWXMLFile.puttyPath" class="form-control" /></div>
+                    </div>
+                    <div class="formColumnSeparator"></div>
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            DeletePath
+                        </label>
+                        <div class="formElementControl">
+                            <input type="text" name="dSGWXMLFile.deletePath" [(ngModel)]="dSGWXMLFile.deletePath" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="formRow">
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            RetryFileTransfer
+                        </label>
+                        <div class="formElementControl"> <input type="text" name="dSGWXMLFile.retryFileTransfer" [(ngModel)]="dSGWXMLFile.retryFileTransfer" class="form-control" /></div>
+                    </div>
+                    <div class="formColumnSeparator"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading boldHeading">Log Settings</div>
+
+            <div class="panel-body">
+
+                <div class="formRow">
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            LogStatus
+                        </label>
+                        <div class="formElementControl"> <input type="text" name="dSGWXMLFile.logStatus" [(ngModel)]="dSGWXMLFile.logStatus"class="form-control" /></div>
+                    </div>
+                    <div class="formColumnSeparator"></div>
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            LogFile
+                        </label>
+                        <div class="formElementControl">
+                            <input type="text" name="dSGWXMLFile.logFile" [(ngModel)]="dSGWXMLFile.logFile" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formRow">
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            LogSizeMB
+                        </label>
+                        <div class="formElementControl"> <input type="text" name="dSGWXMLFile.logSizeMB" [(ngModel)]="dSGWXMLFile.logSizeMB" class="form-control" /></div>
+                    </div>
+                    <div class="formColumnSeparator"></div>
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            LogBackup
+                        </label>
+                        <div class="formElementControl">
+                            <input type="text" name="dSGWXMLFile.logBackup" [(ngModel)]="dSGWXMLFile.logBackup" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formRow">
+                    <div class="formColumn"><label class="formElementLabel">
+                            LogLevel
+                        </label>
+                        <div class="formElementControl">
+                            <select class="form-control" required name="logLevelOption" [(ngModel)]="logLevelOption" (ngModelChange)='onLogOptionsSelected($event)'>
+                                <option class='option' *ngFor='let option
+                                        of logLevelOptions' [value]="option">
+                                    {{option}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formColumnSeparator"></div>
+                    <div class="formColumn">
+                        <label class="formElementLabel">
+                            LogDaily
+                        </label>
+                        <div class="formElementControl">
+                            <input class="checkbox" type="checkbox" name="logDailyCheckBox" [(ngModel)]="logDailyCheckBox" (ngModelChange)="dailyLogChange($event)" required>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="buttonPanel">
+            <div class="actionButton"> <input (click)="onCancelClick()" type="button" name="cancel" value="Cancel" class="btn btn-primary" /></div>
+            <div class="actionButton"> <input type="submit"  name="save" value="Save" class="btn btn-primary" /></div>
+        </div>
+
+    </form>
+
+</div>
+
