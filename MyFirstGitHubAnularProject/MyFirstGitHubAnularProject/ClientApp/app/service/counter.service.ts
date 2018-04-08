@@ -32,8 +32,8 @@ export class DSGWXMLFileService{
         dSGWXMLFile.logSizeMB = "10";
         dSGWXMLFile.logBackup = "10";
         dSGWXMLFile.logLevel = "4";
-        dSGWXMLFile.secureMode = "False";
-        dSGWXMLFile.logDaily = "True";
+        dSGWXMLFile.secureMode = "True";
+        dSGWXMLFile.logDaily = "False";
         dSGWXMLFile.threadPriority = "2";
         dSGWXMLFile.processPriority = "2";       
         dSGWXMLFile.sshParams = " - o \"BatchMode=yes\" -i \"<key>\" -l <limit> <host> \"<cmd>\"";
