@@ -11,6 +11,7 @@ import { DSGWXMLFile } from '../../model/dsgwXMLFile.model';
 
 })
 export class CounterComponent {
+    //Thread Priority Options
     threadPriorityOptions: string[] = ["0", "1", "2", "3", "4"];
     processPriorityOptions: string[] = ["0", "1", "2", "3"];
     logLevelOptions: string[] = ["0", "1", "2", "3", "4", "5"];
